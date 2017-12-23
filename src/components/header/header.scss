@@ -1,0 +1,41 @@
+img.image-preview {
+  height: 250px;
+  border-radius: 50%;
+  border: 1px solid #e6e9ed;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.page {
+  padding: 12px;
+}
+#block-ui.loading-container {
+  .loading-backdrop {
+    //the backdrop falls in here, you can override the opacity etc.
+    background-color: black;
+  }
+  .loading {
+    .loading-icon {
+      //the image or inserted html will be put here
+      img {
+        max-height: 150px;
+      }
+    }
+    .loading-label {
+      //the label showing on loading screen
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .large {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .small {
+    visibility: hidden;
+    display: none;
+  }
+}

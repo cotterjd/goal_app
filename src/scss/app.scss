@@ -1,0 +1,101 @@
+$black: rgb(66, 66, 66);
+img.big-avatar {
+  height: 125px !important;
+  border-radius: 50%;
+  border: 1px solid #e6e9ed;
+}
+.md-input-container.search {
+  label {
+    top: 20px;
+    color: $black;
+    i.md-icon {
+      color: $black;
+    }
+  }
+  margin: 4px 0 12px;
+}
+.md-input-container.search:after {
+  background-color: $black;
+}
+.md-input-container.search.md-has-value {
+  label {
+    top: -4px;
+  }
+}
+a {
+  text-decoration: none;
+  color: #3c3b3d;
+}
+a:hover {
+  text-decoration: none;
+}
+a:not(.md-button):not(.md-bottom-bar-item):hover {
+  text-decoration: none;
+}
+
+div.md-card.responsive-card-middle {
+  @media (max-width: 840px) {
+    width: 100%;
+  }
+  @media (min-width: 841px) and (max-width: 1280px) {
+    width: 75%;
+  }
+  @media (min-width: 1281px) {
+    width: 50%;
+  }
+}
+
+.site-flex {
+  display: inline-flex;
+  margin-top: 8px;
+  text-align: center;
+  @media (max-width: 840px) {
+    width: 100%;
+  }
+  @media (min-width: 841px) and (max-width: 1280px) {
+    width: 50%;
+  }
+  @media (min-width: 1281px) and (max-width: 1720px) {
+    width: 33.3333333%;
+  }
+  @media (min-width: 1721px) {
+    width: 25%;
+  }
+}
+
+select {
+  width: 100%;
+  height: 30px;
+}
+.mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen)
+  > .mdl-layout__header {
+  margin-left: 0;
+  width: 100%;
+}
+div.mdl-layout__drawer-button {
+  display: none;
+}
+header {
+  div {
+    div.mdl-layout__drawer-button {
+      display: unset;
+    }
+  }
+}
+.mdl-center {
+  text-align: center;
+}
+.mdl-right {
+  text-align: right;
+}
+
+div.vdp-datepicker {
+  width: 100%;
+  div {
+    width: 100%;
+    input {
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+}
