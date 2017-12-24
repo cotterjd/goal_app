@@ -129,28 +129,40 @@ export default {
   },
   methods: {
     saveOneWeekGoal() {
+        const dueDate = moment().add(1, 'week').format("MM/DD/YYYY")
+        this.oneWeek.dueDate = dueDate
         setCookie("oneWeekGoal", this.oneWeek.goal)
-        setCookie("oneWeekDueDate", moment().add(1, 'week').format("MM/DD/YYYY"))
+        setCookie("oneWeekDueDate", dueDate)
     }
   , saveTwoWeekGoal() {
+        const dueDate = moment().add(2, 'week').format("MM/DD/YYYY")
+        this.twoWeek.dueDate = dueDate
         setCookie("twoWeekGoal", this.twoWeek.goal)
-        setCookie("twoWeekDueDate", moment().add(2, 'week').format("MM/DD/YYYY"))
+        setCookie("twoWeekDueDate", dueDate)
     }
   , saveOneMonthGoal() {
+        const dueDate = moment().add(1, 'month').format("MM/DD/YYYY")
+        this.oneMonth.dueDate = dueDate
         setCookie("oneMonthGoal", this.oneMonth.goal)
-        setCookie("oneMonthDueDate", moment().add(1, 'month').format("MM/DD/YYYY"))
+        setCookie("oneMonthDueDate", dueDate)
     }
   , saveSixMonthGoal() {
+        const dueDate = moment().add(6, 'month').format("MM/DD/YYYY")
+        this.sixMonth.dueDate = dueDate
         setCookie("sixMonthGoal", this.sixMonth.goal)
-        setCookie("sixMonthDueDate", moment().add(6, 'month').format("MM/DD/YYYY"))
+        setCookie("sixMonthDueDate", dueDate)
     }
   , saveOneYearGoal() {
+        const dueDate = moment().add(1, 'year').format("MM/DD/YYYY")
+        this.oneYear.dueDate = dueDate
         setCookie("oneYearGoal", this.oneYear.goal)
-        setCookie("oneYearDueDate", moment().add(1, 'year').format("MM/DD/YYYY"))
+        setCookie("oneYearDueDate", dueDate)
     }
   , saveTwoYearGoal() {
+        const dueDate = moment().add(2,'year').format("MM/DD/YYYY")
+        this.twoYear.dueDate = dueDate
         setCookie("twoYearGoal", this.twoYear.goal)
-        setCookie("twoYearDueDate", moment().add(2,'year').format("MM/DD/YYYY"))
+        setCookie("twoYearDueDate", dueDate)
     }
   },
   mounted() {

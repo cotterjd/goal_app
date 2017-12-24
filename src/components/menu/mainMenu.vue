@@ -2,7 +2,7 @@
   <md-sidenav class="md-left md-fixed main-sidebar mdl-center" ref="leftSidenav">
     <md-toolbar>
       <div class="md-toolbar-container">
-        <h3 class="md-title">foobar</h3>
+        <h3 class="md-title">Goal Tracker</h3>
       </div>
     </md-toolbar>
     <md-list>
