@@ -34,7 +34,7 @@
     </div>
 </template>
 <script>
-import { createCookie, getCookie } from "../../../helpers/cookie";
+import { setCookie, getCookie } from "../../../helpers/cookie";
 import { resetPassword, login, getCurrentUser } from "../../../api/api";
 import { eventBus } from "../../../components/events/bus";
 import store from "../../../store";
@@ -69,11 +69,11 @@ export default {
     login() {
       eventBus.$emit("blockUI");
 			if(this.rememberMe) {
-				createCookie("email", this.email);
-				createCookie("password", jwt.encode(this.password, secret));
+				setCookie("email", this.email);
+				setCookie("password", jwt.encode(this.password, secret));
 			} else {
-				createCookie("email", "");
-				createCookie("password", "");
+				setCookie("email", "");
+				setCookie("password", "");
 			}
       var email = this.email,
         password = this.password;
