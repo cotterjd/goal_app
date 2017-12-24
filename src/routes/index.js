@@ -1,12 +1,12 @@
 import VueRouter from "vue-router";
+import add from "../components/pages/add/add.vue";
 import home from "../components/pages/home/home.vue";
-import login from "../components/pages/login/login.vue";
 import store from "../store";
 
 //TODO: 404 route
 const routes = [
   { name: "home", path: "/", component: home },
-  { name: "login", path: "/login", component: login },
+  { name: "add", path: "/add", component: add },
 ];
 const router = new VueRouter({
   mode: "history",

@@ -6,8 +6,11 @@
       </div>
     </md-toolbar>
     <md-list>
-      <md-button class="md-raised" @click="goto('/dashboard')">
-        <md-list-item>My foobar</md-list-item>
+      <md-button class="md-raised" @click="goto('/')">
+        <md-list-item>My Goals</md-list-item>
+      </md-button>
+      <md-button class="md-raised" @click="goto('/add')">
+        <md-list-item>Add Goal</md-list-item>
       </md-button>
     </md-list>
   </md-sidenav>
