@@ -1,5 +1,7 @@
 import store from "../store";
 import { eventBus } from "../components/events/bus";
+import { graphqlCheckForError, graphqlError, getClient } from "./graphQlClient";
+import { query, mutation } from "./graphQLhelpers";
 import _ from "lodash";
 import baseUrl from "./baseUrl";
 require("whatwg-fetch");
@@ -16,7 +18,23 @@ function getJson(response) {
   return response.json();
 }
 
+function createGoal(input) {
+  return getClient()
+    .request(
+      mutation({
+        queries: [
+          {
+            action: "createGoal",
+            input: input,
+            output: "{success payload error}"
+          }
+        ]
+      })
+    )
+    .then(graphqlCheckForError("createGoal"))
+    .catch(graphqlError);
+}
 
 export {
-
+  createGoal
 };

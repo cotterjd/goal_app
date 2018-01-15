@@ -1,6 +1,6 @@
 var envObj = {
-  dev: "http://localhost:4050",
-  localhost: "http://localhost:4050",
+  dev: "http://localhost:4051",
+  localhost: "http://localhost:4051",
   "test.foobar.com": "https://testapi.foobar.com",
   "foobar.com": "https://api.foobar.com"
 };

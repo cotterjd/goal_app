@@ -48,7 +48,7 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --port 8000",
+    "dev": "NODE_ENV=development webpack-dev-server --port 8001",
     "build": "WEBPACK_ENV=production webpack"
   },
   "author": "",

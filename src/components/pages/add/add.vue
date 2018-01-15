@@ -108,6 +108,7 @@
 
 <script>
 import { setCookie, getCookie } from "../../../helpers/cookie";
+import { createGoal } from "../../../api/api"
 const moment = require("moment");
 
 export default {
@@ -115,7 +116,7 @@ export default {
   },
   data() {
     return {
-      oneWeek: { goal: "", dueDate: null}
+      oneWeek: { goal: "", due_date: null}
     , twoWeek: { goal: "", dueDate: null}
     , oneMonth: { goal: "", dueDate: null}
     , sixMonth: { goal: "", dueDate: null}
@@ -130,9 +131,12 @@ export default {
   methods: {
     saveOneWeekGoal() {
         const dueDate = moment().add(1, 'week').format("MM/DD/YYYY")
-        this.oneWeek.dueDate = dueDate
-        setCookie("oneWeekGoal", this.oneWeek.goal)
-        setCookie("oneWeekDueDate", dueDate)
+        this.oneWeek.due_date = dueDate
+        createGoal(this.oneWeek).then(r => {
+          console.log(r)
+        })
+        //setCookie("oneWeekGoal", this.oneWeek.goal)
+        //setCookie("oneWeekDueDate", dueDate)
     }
   , saveTwoWeekGoal() {
         const dueDate = moment().add(2, 'week').format("MM/DD/YYYY")
@@ -166,18 +170,18 @@ export default {
     }
   },
   mounted() {
-    this.oneWeek.goal = getCookie("oneWeekGoal");
-    this.oneWeek.dueDate = getCookie("oneWeekDueDate");
-    this.twoWeek.goal = getCookie("twoWeekGoal");
-    this.twoWeek.dueDate = getCookie("twoWeekDueDate");
-    this.oneMonth.goal = getCookie("oneMonthGoal");
-    this.oneMonth.dueDate = getCookie("oneMonthDueDate");
-    this.sixMonth.goal = getCookie("sixMonthGoal");
-    this.sixMonth.dueDate = getCookie("sixMonthDueDate");
-    this.oneYear.goal = getCookie("oneYearGoal");
-    this.oneYear.dueDate = getCookie("oneYearDueDate");
-    this.twoYear.goal = getCookie("twoYearGoal");
-    this.twoYear.dueDate = getCookie("twoYearDueDate");
+    //this.oneWeek.goal = getCookie("oneWeekGoal");
+    //this.oneWeek.dueDate = getCookie("oneWeekDueDate");
+    //this.twoWeek.goal = getCookie("twoWeekGoal");
+    //this.twoWeek.dueDate = getCookie("twoWeekDueDate");
+    //this.oneMonth.goal = getCookie("oneMonthGoal");
+    //this.oneMonth.dueDate = getCookie("oneMonthDueDate");
+    //this.sixMonth.goal = getCookie("sixMonthGoal");
+    //this.sixMonth.dueDate = getCookie("sixMonthDueDate");
+    //this.oneYear.goal = getCookie("oneYearGoal");
+    //this.oneYear.dueDate = getCookie("oneYearDueDate");
+    //this.twoYear.goal = getCookie("twoYearGoal");
+    //this.twoYear.dueDate = getCookie("twoYearDueDate");
   }
 };
 </script>
