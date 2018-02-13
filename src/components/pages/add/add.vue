@@ -116,7 +116,7 @@ export default {
   },
   data() {
     return {
-      oneWeek: { goal: "", due_date: null}
+      oneWeek: { goal: "", dueDate: null}
     , twoWeek: { goal: "", dueDate: null}
     , oneMonth: { goal: "", dueDate: null}
     , sixMonth: { goal: "", dueDate: null}
@@ -131,7 +131,7 @@ export default {
   methods: {
     saveOneWeekGoal() {
         const dueDate = moment().add(1, 'week').format("MM/DD/YYYY")
-        this.oneWeek.due_date = dueDate
+        this.oneWeek.dueDate = dueDate
         createGoal(this.oneWeek).then(r => {
           console.log(r)
         })
