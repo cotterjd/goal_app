@@ -34,7 +34,25 @@ function createGoal(input) {
     .then(graphqlCheckForError("createGoal"))
     .catch(graphqlError);
 }
+function getGoals(input) {
+  return getClient()
+    .request(
+      query({
+        queries: [
+          {
+            action: "goals",
+            input: null,
+            output: "{goal, dueDate, term, done}"
+          }
+        ]
+      })
+    )
+    .then(r => {
+      return r.goals
+    });
+}
 
 export {
   createGoal
+, getGoals
 };

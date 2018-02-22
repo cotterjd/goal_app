@@ -5,7 +5,7 @@
     <div class="mdl-grid" v-for="(g, i) in goals">
         <div class="mdl-cell--2-col mdl-cell mdl-cell--0-col-phone" >&nbsp;</div>
         <div class="mdl-cell--5-col mdl-cell mdl-cell--12-col-phone">
-          <span>{{g.goal}}</span>
+          <span>{{g.goal}} ({{g.term}} goal)</span>
         </div>
         <div class="mdl-cell--2-col mdl-cell mdl-cell--12-col-phone">
           <span>{{g.dueDate}}</span>
@@ -27,8 +27,17 @@
 
 <script>
 import { setCookie, getCookie } from "../../../helpers/cookie";
-const moment = require("moment");
-const R = require('ramda');
+import { getGoals } from "../../../api/api"
+
+const
+  moment = require("moment")
+, R = require('ramda')
+, log = console.log
+, logP = x => {
+    log(x)
+    return x
+  }
+;
 
 export default {
   components: {
@@ -45,20 +54,13 @@ export default {
   methods: {
   },
   mounted() {
-    const oneWeekGoal = getCookie("oneWeekGoal");
-    if (oneWeekGoal) this.goals.push({goal: oneWeekGoal, dueDate: getCookie("oneWeekDueDate")})
-    const twoWeekGoal = getCookie("twoWeekGoal");
-    if (twoWeekGoal) this.goals.push({goal: twoWeekGoal, dueDate: getCookie("twoWeekDueDate")})
-    const oneMonthGoal = getCookie("oneMonthGoal");
-    if (oneMonthGoal) this.goals.push({goal: oneMonthGoal, dueDate: getCookie("oneMonthDueDate")})
-    const sixMonthGoal = getCookie("sixMonthGoal");
-    if (sixMonthGoal) this.goals.push({goal: sixMonthGoal, dueDate: getCookie("sixMonthDueDate")})
-    const oneYearGoal = getCookie("oneYearGoal");
-    if (oneYearGoal) this.goals.push({goal: oneYearGoal, dueDate: getCookie("oneYearDueDate")})
-    const twoYearGoal = getCookie("twoYearGoal");
-    if (twoYearGoal) this.goals.push({goal: twoYearGoal, dueDate: getCookie("twoYearDueDate")})
-
-    R.sortBy(R.prop("dueDate"), this.goals);
+    getGoals().then(goals => {
+      this.goals = R.pipe(
+        R.filter(g => !g.done)
+      , R.map(g => R.assoc("dueDate", moment(g.dueDate).format('MMM DD, YYYY'), g) )
+      , R.sortBy(R.prop("dueDate") )
+      )(goals)
+    })
   }
 };
 </script>

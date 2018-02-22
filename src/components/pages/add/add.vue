@@ -129,59 +129,47 @@ export default {
   watch: {
   },
   methods: {
+    saveGoal(goal) {
+      createGoal(goal)
+    },
     saveOneWeekGoal() {
         const dueDate = moment().add(1, 'week').format("MM/DD/YYYY")
         this.oneWeek.dueDate = dueDate
-        createGoal(this.oneWeek).then(r => {
-          console.log(r)
-        })
-        //setCookie("oneWeekGoal", this.oneWeek.goal)
-        //setCookie("oneWeekDueDate", dueDate)
+        this.oneWeek.term = '1 week'
+        this.saveGoal(this.oneWeek)
     }
   , saveTwoWeekGoal() {
         const dueDate = moment().add(2, 'week').format("MM/DD/YYYY")
         this.twoWeek.dueDate = dueDate
-        setCookie("twoWeekGoal", this.twoWeek.goal)
-        setCookie("twoWeekDueDate", dueDate)
+        this.twoWeek.term = '2 week'
+        this.saveGoal(this.twoWeek)
     }
   , saveOneMonthGoal() {
         const dueDate = moment().add(1, 'month').format("MM/DD/YYYY")
         this.oneMonth.dueDate = dueDate
-        setCookie("oneMonthGoal", this.oneMonth.goal)
-        setCookie("oneMonthDueDate", dueDate)
+        this.oneMonth.term = '1 month'
+        this.saveGoal(this.oneMonth)
     }
   , saveSixMonthGoal() {
         const dueDate = moment().add(6, 'month').format("MM/DD/YYYY")
         this.sixMonth.dueDate = dueDate
-        setCookie("sixMonthGoal", this.sixMonth.goal)
-        setCookie("sixMonthDueDate", dueDate)
+        this.sixMonth.term = '6 month'
+        this.saveGoal(this.sixMonth)
     }
   , saveOneYearGoal() {
         const dueDate = moment().add(1, 'year').format("MM/DD/YYYY")
         this.oneYear.dueDate = dueDate
-        setCookie("oneYearGoal", this.oneYear.goal)
-        setCookie("oneYearDueDate", dueDate)
+        this.oneYear.term = '1 year'
+        this.saveGoal(this.oneYear)
     }
   , saveTwoYearGoal() {
         const dueDate = moment().add(2,'year').format("MM/DD/YYYY")
         this.twoYear.dueDate = dueDate
-        setCookie("twoYearGoal", this.twoYear.goal)
-        setCookie("twoYearDueDate", dueDate)
+        this.twoYear.term = '2 year'
+        this.saveGoal(this.twoYear)
     }
   },
   mounted() {
-    //this.oneWeek.goal = getCookie("oneWeekGoal");
-    //this.oneWeek.dueDate = getCookie("oneWeekDueDate");
-    //this.twoWeek.goal = getCookie("twoWeekGoal");
-    //this.twoWeek.dueDate = getCookie("twoWeekDueDate");
-    //this.oneMonth.goal = getCookie("oneMonthGoal");
-    //this.oneMonth.dueDate = getCookie("oneMonthDueDate");
-    //this.sixMonth.goal = getCookie("sixMonthGoal");
-    //this.sixMonth.dueDate = getCookie("sixMonthDueDate");
-    //this.oneYear.goal = getCookie("oneYearGoal");
-    //this.oneYear.dueDate = getCookie("oneYearDueDate");
-    //this.twoYear.goal = getCookie("twoYearGoal");
-    //this.twoYear.dueDate = getCookie("twoYearDueDate");
   }
 };
 </script>
