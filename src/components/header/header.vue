@@ -12,14 +12,12 @@
     <div class="phone-viewport">
       <md-toolbar>
         <div class="md-toolbar-container">
-          <md-button class="md-icon-button" @click="toggleLeftSidenav">
-            <md-icon>menu</md-icon>
+          <md-button class="" @click="$router.push('/')">
+            My Goals
           </md-button>
-          <span class="md-title large">
-            <router-link to="/">
-              <img src="/images/headerLogo.png" style="height:70px;" />
-            </router-link>
-          </span>
+          <md-button class="" @click="$router.push('/add')">
+            Add Goal
+          </md-button>
 
         </div>
       </md-toolbar>

@@ -3,27 +3,23 @@
 
     <h2>Goals</h2>
     <div class="mdl-grid" v-for="(g, i) in goals">
-        <div class="mdl-cell--2-col mdl-cell mdl-cell--0-col-phone" >&nbsp;</div>
-        <div class="mdl-cell--5-col mdl-cell mdl-cell--12-col-phone">
-          <span>{{g.goal}} ({{g.term}} goal)</span>
+        <div class="mdl-cell--1-col mdl-cell mdl-cell--0-col-phone" >
+				</div>
+        <div class="mdl-cell--1-col mdl-cell mdl-cell--0-col-phone" ><span>{{g.term}} goal</span></div>
+
+        <div class="mdl-cell--6-col mdl-cell mdl-cell--12-col-phone">
+          <span v-if="g.done"><strike>{{g.goal}}</strike></span>
+          <span v-if="!g.done">{{g.goal}}</span>
         </div>
         <div class="mdl-cell--2-col mdl-cell mdl-cell--12-col-phone">
-          <span>{{g.dueDate}}</span>
+          <span><font :color="getColor(g)">{{g.dueDate}}</font></span>
+        </div>
+        <div class="mdl-cell--2-col mdl-cell mdl-cell--12-col-phone">
+					<button v-if="!g.done" @click="finishGoal(g, i)">Done</button>
         </div>
     </div>
   </div>
 </template>
-<style>
-.cover {
-  background-image: url("/images/grads.jpg");
-  width: 100%;
-  height: 480px;
-  padding: 0;
-}
-.bg-white {
-  background-color: #fefefe;
-}
-</style>
 
 <script>
 import { setCookie, getCookie } from "../../../helpers/cookie";
@@ -52,13 +48,27 @@ export default {
   watch: {
   },
   methods: {
+		getColor(goal) {
+			return goal.done ? "black" : (moment(goal.dueDate).toDate() < moment().toDate() ? "red" : "black")
+	 	},
+		finishGoal(g, i) {
+			g.done = true
+			this.goals.splice(i, 1)
+			this.goals = this.goals.concat(g)	
+		}
   },
   mounted() {
     getGoals().then(goals => {
       this.goals = R.pipe(
-        R.filter(g => !g.done)
-      , R.map(g => R.assoc("dueDate", moment(g.dueDate).format('MMM DD, YYYY'), g) )
-      , R.sortBy(R.prop("dueDate") )
+				function getDone(gs) {
+					const doneGoals = gs.filter(g => g.done)
+					return R.pipe(
+      		  R.filter(g => !g.done)
+      		, R.sortBy(R.prop("dueDate") )
+      		, R.map(g => R.assoc("dueDate", moment(g.dueDate, "YYYY-MM-DD").format('MMM DD, YYYY'), g) )
+					, R.concat(doneGoals)
+					)(gs)	
+				}
       )(goals)
     })
   }
