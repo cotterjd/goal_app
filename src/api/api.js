@@ -42,7 +42,7 @@ function getGoals(input) {
           {
             action: "goals",
             input: null,
-            output: "{goal, dueDate, term, done}"
+            output: "{id, goal, dueDate, term, done}"
           }
         ]
       })
@@ -51,8 +51,26 @@ function getGoals(input) {
       return r.goals
     });
 }
+function finishGoal(input) {
+  console.log(input)
+  return getClient()
+    .request(
+      mutation({
+        queries: [
+          {
+            action: "updateGoal",
+            input: input,
+            output: "{success payload error}"
+          }
+        ]
+      })
+    )
+    .then(graphqlCheckForError("updateGoal"))
+    .catch(graphqlError)
+}
 
 export {
   createGoal
+, finishGoal
 , getGoals
 };

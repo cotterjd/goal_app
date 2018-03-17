@@ -23,7 +23,7 @@
 
 <script>
 import { setCookie, getCookie } from "../../../helpers/cookie";
-import { getGoals } from "../../../api/api"
+import { getGoals, finishGoal } from "../../../api/api"
 
 const
   moment = require("moment")
@@ -54,7 +54,10 @@ export default {
 		finishGoal(g, i) {
 			g.done = true
 			this.goals.splice(i, 1)
-			this.goals = this.goals.concat(g)	
+			this.goals = this.goals.concat(g)
+      finishGoal(g).then(r => {
+        console.log(r)
+      })
 		}
   },
   mounted() {
@@ -66,8 +69,8 @@ export default {
       		  R.filter(g => !g.done)
       		, R.sortBy(R.prop("dueDate") )
       		, R.map(g => R.assoc("dueDate", moment(g.dueDate, "YYYY-MM-DD").format('MMM DD, YYYY'), g) )
-					, R.concat(doneGoals)
-					)(gs)	
+					, R.concat(R.__, doneGoals)
+					)(gs)
 				}
       )(goals)
     })
